@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Open%20Sans:wght@400;600&display=swap');
+
+/* Sfondo generale della pagina */
+body {
+   font-family: 'Open Sans', sans-serif; /* Font pulito per le descrizioni */
+   background-color: #007bff;
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase; 
+  color: #FFFFFF;
+}
+
+/* Stile della Card del prodotto */
+.custom-card {
+  border: none;
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease; /* Fluidità dell'animazione */
+  cursor: pointer;
+}
+
+/* Quando passi il mouse sopra la card */
+.custom-card:hover {
+  transform: translateY(-10px); /* La card si alza */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* L'ombra diventa più forte */
+}
+
+/* Titolo del prodotto */
+.card-title {
+  color: #2c3e50;
+  font-weight: 800;
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Categoria colorata */
+.category-badge {
+  background: linear-gradient(45deg, #007bff, #00d4ff); /* Sfumatura blu */
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
