@@ -8,12 +8,8 @@ function DetailPage() {
   const [product, setProduct] = useState(null); // All'inizio non abbiamo dati quindi null
 
 useEffect(() => {
-    // 1. Vediamo se l'ID arriva dall'URL
-    console.log("ID ricevuto dalla URL:", id); 
 
     getProductById(id).then(dati => {
-      // 2. Vediamo cosa risponde il server
-      console.log("Dati arrivati dal Server:", dati); 
       setProduct(dati.product);
     });
   }, [id]);
