@@ -1,9 +1,9 @@
-import { Routers, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
 import ComparatorPage from "./pages/ComparatorPage";
-import './App.css';
+import "./App.css";
 
 
 function App() {
@@ -11,11 +11,11 @@ function App() {
     <>S
     <Navbar />
 
-    <Routers>
+    <Routes>
       <Route path="/" element={<HomePage />}/>
       <Route path="/details/:id" element={<DetailPage />}/>
       <Route path="/comparator" element={<ComparatorPage />}/>
-    </Routers>
+    </Routes>
     </>
   )
 }
