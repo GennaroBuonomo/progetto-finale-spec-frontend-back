@@ -45,7 +45,7 @@ useEffect(() => {
           {/* COLONNA DESTRA: Informazioni */}
           <div className="col-md-6 mt-4 mt-md-0">
             <span className="category-badge mb-3 d-inline-block">{product.category}</span>
-            <h1 className="fw-bold">{product.title}</h1>
+            <h1 className="fw-bold" style={{ color: "#0d6efd" }}>{product.title}</h1>
             <h3 className="text-primary fw-bold my-3">€ {product.price}</h3>
             
             <p className="lead text-muted">{product.description}</p>
