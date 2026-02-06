@@ -1,120 +1,108 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function HomePage() {
+function HomePage() {
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState("TUTTI");
+  const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
-    // 1. Carichiamo i prodotti dal server
     fetch("http://localhost:3001/products")
       .then((res) => res.json())
       .then((data) => setProducts(data))
-      .catch((err) => console.error("Error fetching data", err));
+      .catch((err) => console.error("Errore fetch:", err));
 
-    // 2. Carichiamo i preferiti dal PC dell'utente
-    const savedFavs = JSON.parse(localStorage.getItem("my_favorites")) || [];
-    setFavorites(savedFavs);
+    const localData = localStorage.getItem("my_favorites");
+    if (localData) {
+      setFavorites(JSON.parse(localData));
+    }
   }, []);
 
-  // Funzione per il Cuore (Aggiungi/Rimuovi)
-  const handleFavorite = (product) => {
-    let updated;
-    const isFav = favorites.find((f) => f.id === product.id);
-    if (isFav) {
-      updated = favorites.filter((f) => f.id !== product.id);
+  const toggleFav = (p) => {
+    let newFavs;
+    if (favorites.find((fav) => fav.id === p.id)) {
+      newFavs = favorites.filter((fav) => fav.id !== p.id);
     } else {
-      updated = [...favorites, product];
+      newFavs = [...favorites, p];
     }
-    setFavorites(updated);
-    localStorage.setItem("my_favorites", JSON.stringify(updated));
+    setFavorites(newFavs);
+    localStorage.setItem("my_favorites", JSON.stringify(newFavs));
   };
 
-  // Filtro semplice per la ricerca e categoria
-  const displayProducts = products.filter((p) => {
-    const matchSearch = p.title.toLowerCase().includes(search.toLowerCase());
-    const matchCat = category === "All" || p.category === category;
-    return matchSearch && matchCat;
+  const filtered = products.filter((p) => {
+    const mSearch = p.title.toLowerCase().includes(search.toLowerCase());
+    const mCat = category === "TUTTI" || p.category === category;
+    return mSearch && mCat;
+  });
+
+  filtered.sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1;
+    } else {
+      return a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1;
+    }
   });
 
   return (
-    <div className="container mt-5 px-4">
-      <div className="d-flex justify-content-between align-items-center mb-5">
-        <h1 className="fw-bold m-0">Tech Catalog</h1>
-        <div className="bg-danger text-white px-3 py-2 rounded-pill shadow-sm">
-          ❤️ Favorites: <strong>{favorites.length}</strong>
-        </div>
+    <div className="container mt-5">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1 className="fw-bold">Tech Catalog</h1>
+        <span className="badge bg-danger fs-6">❤️ Preferiti: {favorites.length}</span>
       </div>
 
-      {/* FILTERS */}
-      <div className="row g-3 mb-5 p-4 bg-light rounded-4 shadow-sm border">
-        <div className="col-md-6">
+      <div className="row g-2 mb-5">
+        <div className="col-md-4"> 
           <input 
             type="text" 
-            placeholder="Search products..." 
-            className="form-control border-0 shadow-none bg-white py-2"
-            onChange={(e) => setSearch(e.target.value)}
+            className="form-control" 
+            placeholder="Cerca prodotto..." 
+            onChange={(e) => setSearch(e.target.value)} 
           />
         </div>
-        <div className="col-md-6">
-          <select className="form-select border-0 shadow-none bg-white py-2" onChange={(e) => setCategory(e.target.value)}>
-            <option value="All">All Categories</option>
+        <div className="col-md-4"> 
+          <select className="form-select" onChange={(e) => setCategory(e.target.value)}>
+            <option value="TUTTI">Tutte le categorie</option>
             <option value="Smartphone">Smartphone</option>
             <option value="Laptop">Laptop</option>
             <option value="Tablet">Tablet</option>
           </select>
         </div>
+        {/* Selettore per ordinamento */}
+        <div className="col-md-4">
+          <select className="form-select" onChange={(e) => setSortOrder(e.target.value)}>
+            <option value="asc">Ordine A-Z</option>
+            <option value="desc">Ordine Z-A</option>
+          </select>
+        </div>
       </div>
 
-      {/* GRID */}
       <div className="row">
-        {displayProducts.map((p) => {
-          const isFavorite = favorites.find((f) => f.id === p.id);
-          return (
-            <div key={p.id} className="col-md-4 mb-4">
-              <div className="card h-100 border-0 shadow-sm custom-card-style">
-                <div className="card-body p-4 d-flex flex-column">
-                  <div className="d-flex justify-content-between align-items-start mb-3">
-                    <span className="badge bg-soft-primary text-primary px-3 py-2">
-                      {p.category}
-                    </span>
-                    <button 
-                      className="btn p-0 border-0" 
-                      onClick={() => handleFavorite(p)}
-                      style={{ fontSize: "1.5rem", lineHeight: 1 }}
-                    >
-                      {isFavorite ? "❤️" : "🤍"}
-                    </button>
-                  </div>
-                  
-                  <h4 className="card-title fw-bold text-dark mb-4">{p.title}</h4>
-                  
-                  <div className="mt-auto">
-                    <Link to={`/detail/${p.id}`} className="btn btn-dark w-100 py-2 rounded-3 shadow-sm fw-semibold">
-                      View Details
-                    </Link>
-                  </div>
+        {filtered.map((p) => (
+          <div key={p.id} className="col-md-4 mb-4">
+            <div className="card h-100 shadow-sm border-0" style={{borderRadius: "15px", background: "#fdfdfd"}}>
+              <div className="card-body d-flex flex-column">
+                <div className="d-flex justify-content-between align-items-start mb-3">
+                  <span className="badge bg-primary opacity-75">{p.category}</span>
+                  <button onClick={() => toggleFav(p)} className="btn p-0 border-0 fs-4">
+                    {favorites.find(f => f.id === p.id) ? "❤️" : "🤍"}
+                  </button>
+                </div>
+                <h5 className="card-title fw-bold">{p.title}</h5>
+
+                <div className="mt-auto pt-3">
+                  <Link to={`/detail/${p.id}`} className="btn btn-outline-dark w-100 rounded-pill">
+                    Vedi Dettagli
+                  </Link>
                 </div>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
-
-      <style>{`
-        .bg-soft-primary { background-color: #e7f1ff; }
-        .custom-card-style {
-          transition: transform 0.2s ease, shadow 0.2s ease;
-          border-radius: 20px;
-        }
-        .custom-card-style:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-        }
-        .btn-dark { background-color: #1a1a1a; }
-      `}</style>
     </div>
   );
 }
+
+export default HomePage;
