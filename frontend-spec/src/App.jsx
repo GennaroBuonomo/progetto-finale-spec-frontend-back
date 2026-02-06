@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
@@ -8,15 +8,15 @@ import "./App.css";
 
 function App() {
   return(
-    <>S
-    <Navbar />
+    <BrowserRouter>
+     <Navbar />
 
-    <Routes>
-      <Route path="/" element={<HomePage />}/>
-      <Route path="/details/:id" element={<DetailPage />}/>
-      <Route path="/comparator" element={<ComparatorPage />}/>
-    </Routes>
-    </>
+     <Routes>
+       <Route path="/" element={<HomePage />}/>
+       <Route path="/detail/:id" element={<DetailPage />}/>
+       <Route path="/comparator" element={<ComparatorPage />}/>
+     </Routes>
+    </BrowserRouter>
   )
 }
 
