@@ -9,16 +9,16 @@ export default function ComparatorPage() {
 
   // DATI COMPLETI (Necessari perché il server non invia le specifiche extra)
   const fullDetails = {
-    1: { cpu: "A17 Pro", ram: "8GB", storage: "128GB", image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=600", brand: "Apple" },
-    2: { cpu: "Exynos 2400", ram: "8GB", storage: "256GB", image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600", brand: "Samsung" },
-    3: { cpu: "Tensor G3", ram: "8GB", storage: "128GB", image: "https://images.unsplash.com/photo-1697355360151-2866de32ad4d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", brand: "Google" },
-    4: { cpu: "M2", ram: "8GB", storage: "256GB", image: "https://images.unsplash.com/photo-1659135890064-d57187f0946c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", brand: "Apple" },
-    5: { cpu: "Intel i7", ram: "16GB", storage: "512GB", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=600", brand: "Dell" },
-    6: { cpu: "M2", ram: "8GB", storage: "128GB", image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=600", brand: "Apple" },
-    7: { cpu: "Snapdragon 8 Gen 2", ram: "12GB", storage: "256GB", image: "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?auto=format&fit=crop&q=80&w=600", brand: "Samsung" },
-    8: { cpu: "Snapdragon 8 Gen 3", ram: "12GB", storage: "256GB", image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=600", brand: "Xiaomi" },
-    9: { cpu: "AMD Ryzen 9", ram: "32GB", storage: "1TB", image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=600", brand: "Asus" },
-    10: { cpu: "Intel i5", ram: "16GB", storage: "256GB", image: "https://images.unsplash.com/photo-1691580438181-6947301d544e?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", brand: "Microsoft" }
+    1: { cpu: "A17 Pro", ram: "8GB", storage: "128GB", image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=600", price: 1239, brand: "Apple" },
+    2: { cpu: "Exynos 2400", ram: "8GB", storage: "256GB", image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600", price: 929, brand: "Samsung" },
+    3: { cpu: "Tensor G3", ram: "8GB", storage: "128GB", image: "https://images.unsplash.com/photo-1697355360151-2866de32ad4d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", price: 799, brand: "Google" },
+    4: { cpu: "M2", ram: "8GB", storage: "256GB", image: "https://images.unsplash.com/photo-1659135890064-d57187f0946c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", price: 1299, brand: "Apple" },
+    5: { cpu: "Intel i7", ram: "16GB", storage: "512GB", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=600", price: 1100, brand: "Dell" },
+    6: { cpu: "M2", ram: "8GB", storage: "128GB", image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=600",price: 1069, brand: "Apple" },
+    7: { cpu: "Snapdragon 8 Gen 2", ram: "12GB", storage: "256GB", image: "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?auto=format&fit=crop&q=80&w=600", price: 899, brand: "Samsung" },
+    8: { cpu: "Snapdragon 8 Gen 3", ram: "12GB", storage: "256GB", image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=600", price: 999, brand: "Xiaomi" },
+    9: { cpu: "AMD Ryzen 9", ram: "32GB", storage: "1TB", image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=600", price: 1800, brand: "Asus" },
+    10: { cpu: "Intel i5", ram: "16GB", storage: "256GB", image: "https://images.unsplash.com/photo-1691580438181-6947301d544e?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", price: 899, brand: "Microsoft" }
   };
 
   useEffect(() => {
