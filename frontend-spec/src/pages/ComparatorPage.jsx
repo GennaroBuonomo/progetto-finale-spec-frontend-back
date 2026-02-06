@@ -40,7 +40,7 @@ export default function ComparatorPage() {
   return (
     <div className="comparator-page">
       <div className="container pt-5">
-        <h1 className="text-center mb-5 fw-bold neon-title">PRODUCT COMPARATOR</h1>
+        <h1 className="text-center mb-5 fw-bold neon-title">COMPARATORE DI PRODOTTI</h1>
         
         <div className="row mb-5 justify-content-center">
           <div className="col-md-5 custom-select-wrapper">
@@ -69,7 +69,7 @@ export default function ComparatorPage() {
             <table className="custom-table text-center">
               <thead>
                 <tr>
-                  <th style={{padding: "15px"}}>Features</th>
+                  <th style={{padding: "15px"}}>Caratteristiche</th>
                   <th style={{color: "#00d2ff"}}>{productOne.title}</th>
                   <th style={{color: "#00d2ff"}}>{productTwo.title}</th>
                 </tr>
@@ -96,7 +96,7 @@ export default function ComparatorPage() {
                   <td>{productTwo.ram}</td>
                 </tr>
                 <tr>
-                  <td className="fw-bold">Price</td>
+                  <td className="fw-bold">Prezzo</td>
                   <td className="price-tag">€ {productOne.price}</td>
                   <td className="price-tag">€ {productTwo.price}</td>
                 </tr>
@@ -105,13 +105,13 @@ export default function ComparatorPage() {
 
             <div className="mt-4 text-center">
               <div className="winner-box">
-                  Best Price: {productOne.price < productTwo.price ? productOne.title : productTwo.title}
+                  Miglior prezzo: {productOne.price < productTwo.price ? productOne.title : productTwo.title}
               </div>
             </div>
           </div>
         ) : (
           <div className="text-center text-white mt-5 opacity-50">
-            <h3>Select two products to start the duel!</h3>
+            <h3>Seleziona due prodotti per iniziare il duello!</h3>
           </div>
         )}
       </div>
