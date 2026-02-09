@@ -29,6 +29,7 @@ function HomePage() {
     }
     setFavorites(newFavs);
     localStorage.setItem("my_favorites", JSON.stringify(newFavs));
+    window.dispatchEvent(new Event("storage"));
   };
 
   const filtered = products.filter((p) => {
