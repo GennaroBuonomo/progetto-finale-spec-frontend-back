@@ -5,14 +5,29 @@ import { getProductById } from "../services/api"
 
 function DetailPage() {
   const { id } = useParams();
-  const [product, setProduct] = useState(null); // All'inizio non abbiamo dati quindi null
+  const [product, setProduct] = useState(null);
+  const [favorites, setFavorites] = useState([]); // All'inizio non abbiamo dati quindi null
 
 useEffect(() => {
-
     getProductById(id).then(dati => {
       setProduct(dati.product);
     });
+    const localData = JSON.parse(localStorage.getItem("my_favorites")) || [];
+     setFavorites(localData);
   }, [id]);
+
+  const toggleFav = (p) => {
+    let newFavs;
+    if (favorites.find((fav) => fav.id === p.id)) {
+      newFavs = favorites.filter((fav) => fav.id !== p.id);
+    } else {
+      newFavs = [...favorites, p];
+    }
+    setFavorites(newFavs);
+    localStorage.setItem("my_favorites", JSON.stringify(newFavs));
+    
+    window.dispatchEvent(new Event("storage"));
+  };
 
   if (!product) {
     return (
@@ -45,6 +60,13 @@ useEffect(() => {
           {/* COLONNA DESTRA: Informazioni */}
           <div className="col-md-6 mt-4 mt-md-0">
             <span className="category-badge mb-3 d-inline-block">{product.category}</span>
+            <button 
+                onClick={() => toggleFav(product)} 
+                className="btn p-0 border-0 fs-2"
+                title="Aggiungi ai preferiti"
+              >
+                {favorites.find(f => f.id === product.id) ? "❤️" : "🤍"}
+            </button>
             <h1 className="fw-bold" style={{ color: "#0d6efd" }}>{product.title}</h1>
             <h3 className="text-primary fw-bold my-3">€ {product.price}</h3>
             
