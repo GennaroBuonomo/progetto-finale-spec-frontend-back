@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react" ;
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom"; // useParams serve per leggere l'ID dall'indirizzo
 import { getProductById } from "../services/api"
 
 
 function DetailPage() {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const { id } = useParams(); // Prendo l'ID dalla barra in alto (es: /detail/1)
+  const [product, setProduct] = useState(null); // Qui salvo i dati del prodotto
   const [favorites, setFavorites] = useState([]); // All'inizio non abbiamo dati quindi null
 
 useEffect(() => {
+  // Scarico i dettagli SOLO di questo prodotto
     getProductById(id).then(dati => {
       setProduct(dati.product);
     });
+    // Leggo i preferiti per sapere se mostrare il cuore rosso o bianco
     const localData = JSON.parse(localStorage.getItem("my_favorites")) || [];
      setFavorites(localData);
   }, [id]);
 
+
+  // La stessa funzione della Home per aggiungere/togliere preferiti
   const toggleFav = (p) => {
     let newFavs;
     if (favorites.find((fav) => fav.id === p.id)) {
@@ -25,20 +29,21 @@ useEffect(() => {
     }
     setFavorites(newFavs);
     localStorage.setItem("my_favorites", JSON.stringify(newFavs));
-    
+
+    // Avviso la Navbar
     window.dispatchEvent(new Event("storage"));
   };
 
-  if (!product) {
-    return (
-      <div className="d-flex flex-column justify-content-center align-items-center" style={{ minHeight: "60vh" }}>
-        <div className="spinner-border text-primary" style={{ width: "3rem", height: "3rem" }} role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-        <h4 className="mt-3 text-white">Caricamento in corso...</h4>
-      </div>
-    );
-  }
+  // Finché non ho i dati, mostro la rotellina che gira
+if (!product) {
+  return (
+    <div className="d-flex flex-column justify-content-center align-items-center" style={{ minHeight: "70vh" }}>
+      <div className="spinner-border text-info" role="status"></div>
+      
+      <h4 className="mt-3 text-white">Caricamento in corso...</h4>
+    </div>
+  );
+}
 
   return (
     <div className="container mt-5">
