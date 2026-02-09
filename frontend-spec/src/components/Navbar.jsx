@@ -36,7 +36,6 @@ function Navbar() {
               <Link className="nav-link" to="/comparator" onClick={() => setIsOpen(false)}>Confronta</Link>
             </li>
 
-            {/* SEZIONE PREFERITI CONSULTABILE */}
             <li className="nav-item dropdown ms-lg-3" onMouseLeave={() => setShowFavs(false)}>
               <button 
                 className="btn btn-danger btn-sm rounded-pill" 
@@ -50,7 +49,6 @@ function Navbar() {
                   style={{ minWidth: '200px', position: 'absolute', right: 0 }}>
                 <li className="dropdown-header fw-bold text-dark">I tuoi preferiti:</li>
                 
-                {/* RIGA CORRETTA QUI SOTTO */}
                 {favorites.length === 0 && (
                   <li className="dropdown-item text-muted small">Ancora vuoto...</li>
                 )}
