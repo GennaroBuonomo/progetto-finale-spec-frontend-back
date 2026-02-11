@@ -1,0 +1,122 @@
+[
+    {
+      "id": 1,
+      "title": "iPhone 15 Pro",
+      "category": "Smartphone",
+      "brand": "Apple",
+      "price": 1239,
+      "description": "Titanium design, A17 Pro chip.",
+      "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=600",
+      "cpu": "A17 Pro",
+      "ram": "8GB",
+      "storage": "128GB"
+    },
+    {
+      "id": 2,
+      "title": "Samsung Galaxy S24",
+      "category": "Smartphone",
+      "brand": "Samsung",
+      "price": 929,
+      "description": "Galaxy AI is here.",
+      "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600",
+      "cpu": "Exynos 2400",
+      "ram": "8GB",
+      "storage": "256GB"
+    },
+    {
+      "id": 3,
+      "title": "Google Pixel 8",
+      "category": "Smartphone",
+      "brand": "Google",
+      "price": 799,
+      "description": "The most advanced Pixel camera yet.",
+      "image": "https://images.unsplash.com/photo-1697355360151-2866de32ad4d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "cpu": "Tensor G3",
+      "ram": "8GB",
+      "storage": "128GB"
+    },
+    {
+      "id": 4,
+      "title": "MacBook Air M2",
+      "category": "Laptop",
+      "brand": "Apple",
+      "price": 1299,
+      "description": "Lean, mean, machine.",
+      "image": "https://images.unsplash.com/photo-1659135890064-d57187f0946c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "cpu": "M2",
+      "ram": "8GB",
+      "storage": "256GB"
+    },
+    {
+      "id": 5,
+      "title": "Dell XPS 13",
+      "category": "Laptop",
+      "brand": "Dell",
+      "price": 1100,
+      "description": "Iconic design, incredibly thin.",
+      "image": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=600",
+      "cpu": "Intel i7",
+      "ram": "16GB",
+      "storage": "512GB"
+    },
+    {
+      "id": 6,
+      "title": "iPad Pro",
+      "category": "Tablet",
+      "brand": "Apple",
+      "price": 1069,
+      "description": "Astonishing performance, advanced displays.",
+      "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=600",
+      "cpu": "M2",
+      "ram": "8GB",
+      "storage": "128GB"
+    },
+    {
+      "id": 7,
+      "title": "Samsung Tab S9",
+      "category": "Tablet",
+      "brand": "Samsung",
+      "price": 899,
+      "description": "The new standard of premium tablets.",
+      "image": "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?auto=format&fit=crop&q=80&w=600",
+      "cpu": "Snapdragon 8 Gen 2",
+      "ram": "12GB",
+      "storage": "256GB"
+    },
+    {
+      "id": 8,
+      "title": "Xiaomi 14",
+      "category": "Smartphone",
+      "brand": "Xiaomi",
+      "price": 999,
+      "description": "Lens to legend.",
+      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=600",
+      "cpu": "Snapdragon 8 Gen 3",
+      "ram": "12GB",
+      "storage": "256GB"
+    },
+    {
+      "id": 9,
+      "title": "Asus ROG Zephyrus",
+      "category": "Laptop",
+      "brand": "Asus",
+      "price": 1800,
+      "description": "World's most powerful 14-inch gaming laptop.",
+      "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=600",
+      "cpu": "AMD Ryzen 9",
+      "ram": "32GB",
+      "storage": "1TB"
+    },
+    {
+      "id": 10,
+      "title": "Lenovo Tab P12 Pro",
+      "category": "Tablet",
+      "brand": "Lenovo",
+      "price": 899,
+      "description": "Cinematic AMOLED screen and pro-level productivity tools.",
+      "image": "https://images.unsplash.com/photo-1691580438181-6947301d544e?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "cpu": "Snapdragon 870",
+      "ram": "8GB",
+      "storage": "256GB"
+    }
+]
