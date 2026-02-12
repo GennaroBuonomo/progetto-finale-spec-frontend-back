@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useFavorites } from "../hooks/useFavorite";
 
 function HomePage() {
 // --- LE MEMORIE (STATI) ---
   // Qui salvo i dati che cambiano mentre uso la pagin
   const [products, setProducts] = useState([]); // La lista di tutti i prodotti scaricati
-  const [favorites, setFavorites] = useState([]); // La lista dei prodotti col cuore
   const [search, setSearch] = useState(""); // Quello che scrivo nella barra di ricerca
   const [category, setCategory] = useState("TUTTI"); // Il filtro (Smartphone, Laptop, ecc.)
-  const [sortOrder, setSortOrder] = useState("asc"); // Per ordinare A-Z o Z-A
+  const [sortOrder, setSortOrder] = useState("asc"); // Per ordinare A-Z o Z-A (Ascending)
+  const { favorites, toggleFav } = useFavorites();
 
    // --- ALL'AVVIO DELLA PAGINA ---
   // Questo succede solo una volta, appena apro la Home
@@ -17,31 +18,8 @@ function HomePage() {
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("Errore fetch:", err));
-
-      // 2. Controllo se avevo salvato dei preferiti nel browser (localStorage)
-    const localData = localStorage.getItem("my_favorites");
-    if (localData) {
-      setFavorites(JSON.parse(localData));
-    }
   }, []);
    
-  // --- LA FUNZIONE DEL CUORE ---
-  const toggleFav = (p) => {
-    let newFavs;
-    // Controllo: questo prodotto è già nei preferiti?
-    if (favorites.find((fav) => fav.id === p.id)) {
-      newFavs = favorites.filter((fav) => fav.id !== p.id); // Sì -> Lo tolgo
-    } else {
-      newFavs = [...favorites, p]; // No -> Lo aggiungo alla lista
-    }
-    // Aggiorno la memoria della pagina e quella del browser
-    setFavorites(newFavs);
-    localStorage.setItem("my_favorites", JSON.stringify(newFavs));
-    // Mando un SEGNALE alla Navbar: "Aggiornati subito!"
-    window.dispatchEvent(new Event("storage"));
-  };
-
-
    // --- I FILTRI ---
   // Prima di mostrare i prodotti, applico i filtri
   const filtered = products.filter((p) => {

@@ -1,38 +1,21 @@
 import { useEffect, useState } from "react" ;
 import { useParams, Link } from "react-router-dom"; // useParams serve per leggere l'ID dall'indirizzo
 import { getProductById } from "../services/api"
+import { useFavorites } from "../hooks/useFavorite.js";
 
 
 function DetailPage() {
   const { id } = useParams(); // Prendo l'ID dalla barra in alto (es: /detail/1)
   const [product, setProduct] = useState(null); // Qui salvo i dati del prodotto
-  const [favorites, setFavorites] = useState([]); // All'inizio non abbiamo dati quindi null
+  const { favorites, toggleFav } = useFavorites();
 
 useEffect(() => {
   // Scarico i dettagli SOLO di questo prodotto
     getProductById(id).then(dati => {
       setProduct(dati.product);
     });
-    // Leggo i preferiti per sapere se mostrare il cuore rosso o bianco
-    const localData = JSON.parse(localStorage.getItem("my_favorites")) || [];
-     setFavorites(localData);
   }, [id]);
 
-
-  // La stessa funzione della Home per aggiungere/togliere preferiti
-  const toggleFav = (p) => {
-    let newFavs;
-    if (favorites.find((fav) => fav.id === p.id)) {
-      newFavs = favorites.filter((fav) => fav.id !== p.id);
-    } else {
-      newFavs = [...favorites, p];
-    }
-    setFavorites(newFavs);
-    localStorage.setItem("my_favorites", JSON.stringify(newFavs));
-
-    // Avviso la Navbar
-    window.dispatchEvent(new Event("storage"));
-  };
 
   // Finché non ho i dati, mostro la rotellina che gira
 if (!product) {
